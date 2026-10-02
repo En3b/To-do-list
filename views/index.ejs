@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylsheet" href="public/style.css">
+    
+    
+</head>
+<body>
+    
+    <%- include('partials/header') %>
+    <br>
+
+
+    <section>
+        <div id="wpisanie">
+            <input type="text" id="zadanie" name="zadanie">
+            <button onclick="Dodaj()">Dodaj</button>
+        </div>
+        
+            <ul id="lista"></ul>
+
+        <div id="zliczanie">
+            <h3 id="numer"></h3>
+            
+            <h3 id="numerr"></h3>
+        </div>
+
+
+
+            
+    </section>  
+    <br>
+    <%- include('partials/footer') %>
+
+    <script>
+        let iloscD = 0;
+        let iloscM = 0;
+
+       
+
+
+
+
+
+
+       function Dodaj(){
+
+        
+
+        let input = document.getElementById('zadanie');
+        const tasktext = input.value.trim();
+        
+        input.value = '';
+        
+
+        if(tasktext === '')
+       {
+        alert("Wpisz jeszcze raz")
+       }
+       else
+       {
+        iloscD++;
+        document.getElementById('numer').innerHTML = 'Do zrobienia '+ iloscD;
+        const li = document.createElement('li');
+        li.textContent = tasktext;
+
+        const buttonEdit = document.createElement('button');
+        buttonEdit.className = 'edit';
+        buttonEdit.textContent = 'edytuj';
+        buttonEdit.onclick = function(){
+
+            if(li.querySelector('input')){
+                return;
+            }
+
+            const edytowanie = document.createElement('input');
+            edytowanie.type='text';
+            edytowanie.value = li.firstChild.textContent
+
+            const zapisywanie = document.createElement('button');
+            zapisywanie.textContent = 'zapisz'
+            li.style.display ='none';
+            
+            li.parentNode.insertBefore(edytowanie, li);
+            li.parentNode.insertBefore(zapisywanie, li);
+            buttonEdit.style.display = 'none';
+            
+            zapisywanie.onclick = function()
+            {
+                    if(edytowanie.value.trim() !== ''){  
+                        li.textContent = edytowanie.value.trim();
+                    }
+
+                    edytowanie.remove();
+                    zapisywanie.remove();
+                    li.style.display ='';
+                    buttonEdit.style.display ='';
+                    li.parentNode.insertBefore(buttonEdit);
+
+                
+            }
+                
+        
+
+            
+        }
+
+        
+
+        const button = document.createElement('button');
+        button.className = 'usuwanie';
+        button.textContent = "usuń";
+        button.onclick = function(){
+            li.remove();
+            button.remove();
+            buttonEdit.remove();
+            iloscM++;
+            if(iloscD > 0){
+                iloscD--;
+                document.getElementById('numer').innerHTML = 'Do zrobienia '+ iloscD;
+                document.getElementById('numerr').innerHTML = 'zrobione '+ iloscM;
+            }
+            
+            
+            
+        }
+        
+        
+
+        const lista = document.getElementById('lista');
+        lista.appendChild(li);
+        lista.appendChild(button);
+        lista.appendChild(buttonEdit);
+        
+        
+        
+       }
+  
+       }
+       document.getElementById('numer').innerHTML = 'Do zrobienia '+ iloscD;
+       document.getElementById('numerr').innerHTML = 'zrobione '+ iloscM;
+    </script>
+</body>
+</html>
+

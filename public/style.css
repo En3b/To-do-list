@@ -1,0 +1,36 @@
+body{
+    background-color: rgb(180, 180, 180);
+}
+h1{
+    color: rgb(252, 246, 166);
+}
+header{
+    text-align: center;
+}
+footer{
+    text-align: center;
+}
+
+ul{
+    list-style-type: none;
+}
+button{
+    border-radius: 10%;
+    border: 0;
+    padding: 5px;
+    width: 3%;
+}
+#zliczanie  {
+    width: 150px;
+    text-align: center;
+    background-color: azure;
+    padding: auto;
+    border-radius: 10px;
+}
+
+li{
+    background-color: beige;
+    border-radius: 10px;
+    width: 200px;
+    padding: 10px;
+}
